@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pylab as plt
 import healpy as hp
 from rubin_sim.scheduler.model_observatory import ModelObservatory
-from rubin_sim.scheduler.schedulers import CoreScheduler, FilterSchedUzy
+from rubin_sim.scheduler.schedulers import CoreScheduler, SimpleFilterSched
 from rubin_sim.scheduler.utils import (SkyAreaGeneratorGalplane, ConstantFootprint, 
                                        Footprint, StepSlopes,
                                        slice_quad_galactic_cut, Footprints, IntRounded,
@@ -820,7 +820,7 @@ def run_sched(surveys, survey_length=365.25, nside=32, fileroot='baseline_', ver
     years = np.round(survey_length/365.25)
     scheduler = CoreScheduler(surveys, nside=nside)
     n_visit_limit = None
-    fs = FilterSchedUzy(illum_limit=illum_limit)
+    fs = SimpleFilterSched(illum_limit=illum_limit)
     observatory = ModelObservatory(nside=nside, mjd_start=mjd_start)
     observatory, scheduler, observations = sim_runner(observatory, scheduler,
                                                       survey_length=survey_length,
