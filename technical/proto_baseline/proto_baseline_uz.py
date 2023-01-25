@@ -47,7 +47,7 @@ class EuclidOverlapFootprint(SkyAreaGeneratorGalplane):
         in_poly = [polygon.contains(Point(x, y)) for x, y in zip(wrap_ra, self.dec)]
 
         # find which map points are inside the contour
-        indx = np.where((np.array(in_poly) == True & (self.pix_labels == "")))
+        indx = np.where((np.array(in_poly) == True) & (self.pix_labels == ""))
         self.pix_labels[indx] = label
         for filtername in filter_ratios:
             self.healmaps[filtername][indx] = filter_ratios[filtername]
