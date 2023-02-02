@@ -47,7 +47,7 @@ class EuclidOverlapFootprint(SkyAreaGeneratorGalplane):
         in_poly = [polygon.contains(Point(x, y)) for x, y in zip(wrap_ra, self.dec)]
 
         # find which map points are inside the contour
-        indx = np.where((np.array(in_poly) == True) & (self.pix_labels == ""))
+        indx = np.where((np.array(in_poly) == True) & (self.pix_labels == ""))[0]
         self.pix_labels[indx] = label
         for filtername in filter_ratios:
             self.healmaps[filtername][indx] = filter_ratios[filtername]
@@ -119,7 +119,7 @@ class EuclidOverlapFootprint(SkyAreaGeneratorGalplane):
 
 def blob_for_long(nside, nexp=2, exptime=30., filter1s=['g'],
                   filter2s=['i'], pair_time=33.,
-                  camera_rot_limits=[-80., 80.], n_obs_template=3,
+                  camera_rot_limits=[-80., 80.], n_obs_template=None, 
                   season=300., season_start_hour=-4., season_end_hour=2.,
                   shadow_minutes=60., max_alt=76., moon_distance=30., ignore_obs=['DD', 'twilight_neo'],
                   m5_weight=6., footprint_weight=1.5, slewtime_weight=3.,
@@ -145,7 +145,7 @@ def blob_for_long(nside, nexp=2, exptime=30., filter1s=['g'],
         The ideal time between pairs (minutes)
     camera_rot_limits : list of float ([-80., 80.])
         The limits to impose when rotationally dithering the camera (degrees).
-    n_obs_template : int (3)
+    n_obs_template : int (5)
         The number of observations to take every season in each filter
     season : float (300)
         The length of season (i.e., how long before templates expire) (days)
@@ -186,6 +186,8 @@ def blob_for_long(nside, nexp=2, exptime=30., filter1s=['g'],
                          'twilight_scale': True}
 
     surveys = []
+    if n_obs_template is None:
+        n_obs_template = {'u': 3, 'g': 5, 'r': 5, 'i': 5, 'z':5, 'y': 5}
 
     times_needed = [pair_time, pair_time*2]
     for filtername, filtername2 in zip(filter1s, filter2s):
@@ -221,18 +223,18 @@ def blob_for_long(nside, nexp=2, exptime=30., filter1s=['g'],
         if filtername2 is not None:
             bfs.append((bf.NObsPerYearBasisFunction(filtername=filtername, nside=nside,
                                                     footprint=footprints.get_footprint(filtername),
-                                                    n_obs=n_obs_template, season=season,
+                                                    n_obs=n_obs_template[filtername], season=season,
                                                     season_start_hour=season_start_hour,
                                                     season_end_hour=season_end_hour), template_weight/2.))
             bfs.append((bf.NObsPerYearBasisFunction(filtername=filtername2, nside=nside,
                                                     footprint=footprints.get_footprint(filtername2),
-                                                    n_obs=n_obs_template, season=season,
+                                                    n_obs=n_obs_template[filtername2], season=season,
                                                     season_start_hour=season_start_hour,
                                                     season_end_hour=season_end_hour), template_weight/2.))
         else:
             bfs.append((bf.NObsPerYearBasisFunction(filtername=filtername, nside=nside,
                                                     footprint=footprints.get_footprint(filtername),
-                                                    n_obs=n_obs_template, season=season,
+                                                    n_obs=n_obs_template[filtername], season=season,
                                                     season_start_hour=season_start_hour,
                                                     season_end_hour=season_end_hour), template_weight))
         # Masks, give these 0 weight
@@ -384,7 +386,7 @@ def gen_GreedySurveys(nside=32, nexp=2, exptime=30., filters=['r', 'i', 'z', 'y'
 
 def generate_blobs(nside, nexp=2, exptime=30., filter1s=['u', 'u', 'g', 'r', 'i', 'z', 'y'],
                    filter2s=['g', 'r', 'r', 'i', 'z', 'y', 'y'], pair_time=33.,
-                   camera_rot_limits=[-80., 80.], n_obs_template=3,
+                   camera_rot_limits=[-80., 80.], n_obs_template=None,
                    season=300., season_start_hour=-4., season_end_hour=2.,
                    shadow_minutes=60., max_alt=76., moon_distance=30., ignore_obs=['DD', 'twilight_neo'],
                    m5_weight=6., footprint_weight=1.5, slewtime_weight=3.,
@@ -456,6 +458,9 @@ def generate_blobs(nside, nexp=2, exptime=30., filter1s=['u', 'u', 'g', 'r', 'i'
                          'smoothing_kernel': None, 'nside': nside, 'seed': 42, 'dither': True,
                          'twilight_scale': False}
 
+    if n_obs_template is None:
+        n_obs_template = {'u': 3, 'g': 5, 'r': 5, 'i': 5, 'z':5, 'y': 5}
+
     surveys = []
 
     times_needed = [pair_time, pair_time*2]
@@ -496,18 +501,18 @@ def generate_blobs(nside, nexp=2, exptime=30., filter1s=['u', 'u', 'g', 'r', 'i'
         if filtername2 is not None:
             bfs.append((bf.NObsPerYearBasisFunction(filtername=filtername, nside=nside,
                                                     footprint=footprints.get_footprint(filtername),
-                                                    n_obs=n_obs_template, season=season,
+                                                    n_obs=n_obs_template[filtername], season=season,
                                                     season_start_hour=season_start_hour,
                                                     season_end_hour=season_end_hour), template_weights[filtername]/2.))
             bfs.append((bf.NObsPerYearBasisFunction(filtername=filtername2, nside=nside,
                                                     footprint=footprints.get_footprint(filtername2),
-                                                    n_obs=n_obs_template, season=season,
+                                                    n_obs=n_obs_template[filtername2], season=season,
                                                     season_start_hour=season_start_hour,
                                                     season_end_hour=season_end_hour), template_weights[filtername2]/2.))
         else:
             bfs.append((bf.NObsPerYearBasisFunction(filtername=filtername, nside=nside,
                                                     footprint=footprints.get_footprint(filtername),
-                                                    n_obs=n_obs_template, season=season,
+                                                    n_obs=n_obs_template[filtername], season=season,
                                                     season_start_hour=season_start_hour,
                                                     season_end_hour=season_end_hour), template_weight))
 
@@ -565,7 +570,7 @@ def generate_blobs(nside, nexp=2, exptime=30., filter1s=['u', 'u', 'g', 'r', 'i'
 
 def generate_twi_blobs(nside, nexp=2, exptime=30., filter1s=['r', 'i', 'z', 'y'],
                        filter2s=['i', 'z', 'y', 'y'], pair_time=15.,
-                       camera_rot_limits=[-80., 80.], n_obs_template=3,
+                       camera_rot_limits=[-80., 80.], n_obs_template=None,
                        season=300., season_start_hour=-4., season_end_hour=2.,
                        shadow_minutes=60., max_alt=76., moon_distance=30., ignore_obs=['DD', 'twilight_neo'],
                        m5_weight=6., footprint_weight=1.5, slewtime_weight=3.,
@@ -631,6 +636,9 @@ def generate_twi_blobs(nside, nexp=2, exptime=30., filter1s=['r', 'i', 'z', 'y']
 
     surveys = []
 
+    if n_obs_template is None:
+        n_obs_template = {'u': 3, 'g': 5, 'r': 5, 'i': 5, 'z': 5, 'y': 5}
+
     times_needed = [pair_time, pair_time*2]
     for filtername, filtername2 in zip(filter1s, filter2s):
         detailer_list = []
@@ -669,18 +677,18 @@ def generate_twi_blobs(nside, nexp=2, exptime=30., filter1s=['r', 'i', 'z', 'y']
         if filtername2 is not None:
             bfs.append((bf.NObsPerYearBasisFunction(filtername=filtername, nside=nside,
                                                     footprint=footprints.get_footprint(filtername),
-                                                    n_obs=n_obs_template, season=season,
+                                                    n_obs=n_obs_template[filtername], season=season,
                                                     season_start_hour=season_start_hour,
                                                     season_end_hour=season_end_hour), template_weight/2.))
             bfs.append((bf.NObsPerYearBasisFunction(filtername=filtername2, nside=nside,
                                                     footprint=footprints.get_footprint(filtername2),
-                                                    n_obs=n_obs_template, season=season,
+                                                    n_obs=n_obs_template[filtername2], season=season,
                                                     season_start_hour=season_start_hour,
                                                     season_end_hour=season_end_hour), template_weight/2.))
         else:
             bfs.append((bf.NObsPerYearBasisFunction(filtername=filtername, nside=nside,
                                                     footprint=footprints.get_footprint(filtername),
-                                                    n_obs=n_obs_template, season=season,
+                                                    n_obs=n_obs_template[filtername], season=season,
                                                     season_start_hour=season_start_hour,
                                                     season_end_hour=season_end_hour), template_weight))
         if repeat_night_weight is not None:
