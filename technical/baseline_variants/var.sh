@@ -1,3 +1,3 @@
-python baseline.py
-python old_filt.py
-python old_filt_old_foot.py
+python proto_baseline.py
+python start_date.py
+python start_date_footprint.py
