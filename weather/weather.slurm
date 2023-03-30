@@ -2,7 +2,7 @@
 
 ## Job Name
 
-#SBATCH --job-name=starter3.1
+#SBATCH --job-name=weather3.1
 
 ## Allocation Definition
 
@@ -33,7 +33,7 @@
 
 ## Specify the working directory for this job
 
-#SBATCH --chdir=/gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/starter
+#SBATCH --chdir=/gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/weather
 
 ##turn on e-mail notification
 
@@ -50,12 +50,12 @@ source ~/anaconda3/etc/profile.d/conda.sh
 conda activate guro
 export OPENBLAS_NUM_THREADS=1
 
-cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/starter
+cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/weather
 
 ## run all the baseline commands in parallel
 module load parallel-20170722
 
-python starter.py
+cat weather.sh | parallel -j 28
 
 # ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
 # ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
