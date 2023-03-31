@@ -56,7 +56,7 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/maf
 module load parallel-20170722
 
 
-ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
+ls *10yrs.db | xargs -I'{}' echo "conda activate guro ; glance_dir --db '{}'" > maf.sh
 ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
 ls *10yrs.db | xargs -I'{}' echo "ddf_dir --db '{}'" >> maf.sh
 ls *10yrs.db | xargs -I'{}' echo "metadata_dir --db '{}'" >> maf.sh
@@ -67,7 +67,7 @@ generate_ss --pop vatiras_granvik_10k
 cat ss_script.sh >> maf.sh
 
 # Need to activate for each I guess
-cat maf.sh | xargs -I'{}' echo "conda activate guro ; {}" > maf_final.sh
+cat maf.sh | xargs -I'{}' echo "conda activate guro ; cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/maf ; {}" > maf_final.sh
 
 scontrol show hostnames > list_of_nodes
 cpu_count=28
