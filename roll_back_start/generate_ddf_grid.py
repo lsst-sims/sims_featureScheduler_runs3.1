@@ -72,17 +72,22 @@ if __name__ == "__main__":
             sys.stdout.write(text)
             sys.stdout.flush()
 
-        sm.set_ra_dec_mjd(ras, decs, mjd, degrees=False)
-        if sm.sun_alt > sun_limit:
+        try:
+            sm.set_ra_dec_mjd(ras, decs, mjd, degrees=False)
+            if sm.sun_alt > sun_limit:
+                mags.append(sm.return_mags()["g"] * 0)
+                airmasses.append(sm.airmass * 0)
+            else:
+                mags.append(sm.return_mags()["g"])
+                airmasses.append(sm.airmass)
+            sun_alts.append(sm.sun_alt)
+            result["sun_n18_rising_next"][i] = observer.twilight_morning_astronomical(
+                Time(mjd, format="mjd"), which="next"
+            ).mjd
+        except:
             mags.append(sm.return_mags()["g"] * 0)
             airmasses.append(sm.airmass * 0)
-        else:
-            mags.append(sm.return_mags()["g"])
-            airmasses.append(sm.airmass)
-        sun_alts.append(sm.sun_alt)
-        result["sun_n18_rising_next"][i] = observer.twilight_morning_astronomical(
-            Time(mjd, format="mjd"), which="next"
-        ).mjd
+            sun_alts.append(sm.sun_alt * 0)
 
     mags = np.array(mags)
     airmasses = np.array(airmasses)
@@ -100,4 +105,4 @@ if __name__ == "__main__":
             "g", mags[:, i], FWHMeff, 30.0, airmasses[:, i], nexp=1
         )
 
-    np.savez(os.path.join(get_data_dir(), "scheduler", "ddf_grid.npz"), ddf_grid=result)
+    np.savez("ddf_grid.npz", ddf_grid=result)
