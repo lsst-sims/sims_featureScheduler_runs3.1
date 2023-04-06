@@ -55,7 +55,7 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/big_run
 ## run all the baseline commands in parallel
 module load parallel-20170722
 
-cat moster.sh | parallel -j 28
+cat monster.sh | parallel -j 28
 
 # ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
 # ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
