@@ -2,7 +2,7 @@
 
 ## Job Name
 
-#SBATCH --job-name=old3.1
+#SBATCH --job-name=noroll3.1
 
 ## Allocation Definition
 
@@ -33,7 +33,7 @@
 
 ## Specify the working directory for this job
 
-#SBATCH --chdir=/gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/roll_back_start
+#SBATCH --chdir=/gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/noroll
 
 ##turn on e-mail notification
 
@@ -50,12 +50,12 @@ source ~/anaconda3/etc/profile.d/conda.sh
 conda activate guro
 export OPENBLAS_NUM_THREADS=1
 
-cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/roll_back_start
+cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/noroll
 
 ## run all the baseline commands in parallel
 module load parallel-20170722
 
-cat old_mjd0.sh | parallel -j 28
+python noroll.py
 
 # ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
 # ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
