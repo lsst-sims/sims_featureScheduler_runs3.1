@@ -8,7 +8,7 @@ from rubin_sim.data import get_baseline
 
 if __name__ == "__main__":
 
-    filter_name = "g"
+    filter_name = "u"
 
     # Load up pointings
     baseline_survey = get_baseline()
@@ -43,5 +43,5 @@ if __name__ == "__main__":
     np.savez('test_generate.npz', observed_stars=observed_stars)
 
     # now to try running the solution
-    solver = LsqrSolver()
+    solver = LsqrSolver(iter_lim=10000)
     solver.run()
