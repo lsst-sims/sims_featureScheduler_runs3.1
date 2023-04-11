@@ -8,14 +8,14 @@ from rubin_sim.data import get_baseline
 
 if __name__ == "__main__":
 
-    filter_name = "r"
+    filter_name = "g"
 
     # Load up pointings
     baseline_survey = get_baseline()
     baseline_survey
     con = sqlite3.connect(baseline_survey)
     visits_df = pd.read_sql("select observationId, fieldra as ra,fielddec as "
-                            "dec,fiveSigmaDepth,rotSkyPos from observations where filter='%s' and night < 730;" % filter_name, con)
+                            "dec,fiveSigmaDepth,rotSkyPos from observations where filter='%s' and night < 365;" % filter_name, con)
     con.close()
     # what is the right way to do this?
     names = ['observationId', 'ra', 'dec', 'fiveSigmaDepth', 'rotSkyPos']
@@ -41,7 +41,6 @@ if __name__ == "__main__":
 
     # Save results
     np.savez('test_generate.npz', observed_stars=observed_stars)
-
 
     # now to try running the solution
     solver = LsqrSolver()
