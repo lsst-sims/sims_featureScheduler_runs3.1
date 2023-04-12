@@ -15,7 +15,7 @@ if __name__ == "__main__":
     baseline_survey
     con = sqlite3.connect(baseline_survey)
     visits_df = pd.read_sql("select observationId, fieldra as ra,fielddec as "
-                            "dec,fiveSigmaDepth,rotSkyPos from observations where filter='%s' and night < 365;" % filter_name, con)
+                            "dec,fiveSigmaDepth,rotSkyPos from observations where filter='%s' and night < 180;" % filter_name, con)
     con.close()
     # what is the right way to do this?
     names = ['observationId', 'ra', 'dec', 'fiveSigmaDepth', 'rotSkyPos']
