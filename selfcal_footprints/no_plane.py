@@ -59,6 +59,7 @@ class NoPlaneFootprint(EuclidOverlapFootprint):
         low_dust_ratios={"u": 0.32, "g": 0.4, "r": 1.0, "i": 1.0, "z": 0.9, "y": 0.9},
         bulge_ratios={"u": 0.18, "g": 1.0, "r": 1.05, "i": 1.05, "z": 1.0, "y": 0.23},
         virgo_ratios={"u": 0.32, "g": 0.4, "r": 1.0, "i": 1.0, "z": 0.9, "y": 0.9},
+        euclid_ratios={"u": 0.32, "g": 0.4, "r": 1.0, "i": 1.0, "z": 0.9, "y": 0.9},
     ):
         """
         Parameters:
@@ -90,6 +91,7 @@ class NoPlaneFootprint(EuclidOverlapFootprint):
         self.add_virgo_cluster(virgo_ratios)
         self.add_bulge(bulge_ratios)
         self.add_nes(nes_ratios)
+        self.add_euclid_overlap(euclid_ratios)
         self.add_scp(scp_ratios)
 
         return self.healmaps, self.pix_labels
