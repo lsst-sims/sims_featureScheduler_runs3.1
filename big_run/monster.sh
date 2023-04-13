@@ -22,3 +22,6 @@ python ../weather/weather.py --cloud_offset_year 30 --outDir ../weather
 python ../weather/weather.py --cloud_offset_year 31 --outDir ../weather
 python ../weather/weather.py --cloud_offset_year 35 --outDir ../weather
 python ../weather/weather.py --cloud_offset_year 36 --outDir ../weather
+python ../selfcal_footprints/heavy_plane.py --outDir ../selfcal_footprints
+python ../selfcal_footprints/light_plane.py --outDir ../selfcal_footprints
+python ../selfcal_footprints/no_plane.py    --outDir ../selfcal_footprints 
