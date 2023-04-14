@@ -8,21 +8,38 @@ from rubin_sim.data import get_baseline
 
 if __name__ == "__main__":
 
-    filter_name = "u"
+    filter_name = "r"
+
+    old = False
 
     # Load up pointings
-    baseline_survey = get_baseline()
-    baseline_survey
-    con = sqlite3.connect(baseline_survey)
-    visits_df = pd.read_sql("select observationId, fieldra as ra,fielddec as "
-                            "dec,fiveSigmaDepth,rotSkyPos from observations where filter='%s' and night < 180;" % filter_name, con)
+    if old:
+        survey = '/Users/yoachim/git_repos/23_Scratch/sched_over_time/opsim3_61_sqlite.db'
+    else:
+        # survey = get_baseline()
+        survey = '../selfcal_footprints/no_plane_v3.1_10yrs.db'
+    con = sqlite3.connect(survey)
+
+    if old:
+        visits_df = pd.read_sql("select obsHistID as observationId, fieldra as ra,fielddec as "
+                                "dec,fiveSigma as fiveSigmaDepth,rotSkyPos from Summary where filter='%s' and night < 360;" % filter_name, con)
+    else:
+        visits_df = pd.read_sql("select observationId, fieldra as ra,fielddec as "
+                                "dec,fiveSigmaDepth,rotSkyPos from observations where filter='%s' and night < 360;" % filter_name, con)
+
     con.close()
-    # what is the right way to do this?
+    # what is the right way to do this? 
     names = ['observationId', 'ra', 'dec', 'fiveSigmaDepth', 'rotSkyPos']
     types = [int, float, float, float, float]
     visits = np.empty(visits_df.shape[0], dtype=list(zip(names, types)))
     for key in names:
         visits[key] = visits_df[key].values
+
+    # If we are reading old database with radians
+    if old:
+        visits['ra'] = np.degrees(visits['ra'])
+        visits['dec'] = np.degrees(visits['dec'])
+        visits['rotSkyPos'] = np.degrees(visits['rotSkyPos'])
 
     # Load up stars
     con = sqlite3.connect("msrgb_1e6.sqlite")
