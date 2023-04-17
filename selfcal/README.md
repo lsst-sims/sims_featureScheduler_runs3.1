@@ -14,3 +14,12 @@ Output for each:
 * I guess a plot or two, maybe?
 
 One big remaining question will be if the results hold for smaller patches and more stars. I suppose we could run a 2x2  (and 3x3) patch sim and see if anything radically changes.
+
+
+-------
+
+#Motivation#
+
+We want to address the question, do we need to modify the survey strategy to ensure we can run self calibration. In particular, is the footprint connected enough and does rolling cause any issues. 
+
+
