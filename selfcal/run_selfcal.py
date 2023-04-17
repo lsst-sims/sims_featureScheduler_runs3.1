@@ -69,7 +69,9 @@ if __name__ == "__main__":
 
     out_name = '%s_%s_%.1f_%i.npz' % (run_name, args.filtername, years, args.n_patches)
 
-    fit_patches, fit_stars = run_selfcal(args.pointings_db, filtername=args.filtername,
-                                         night_max=args.night_max, n_patches=args.n_patches)
+    fit_patches, fit_stars = run_selfcal(args.pointings_db,
+                                         filtername=args.filtername,
+                                         night_max=args.night_max,
+                                         n_patches=args.n_patches)
 
     np.savez(out_name, fit_patches=fit_patches, fit_stars=fit_stars)
