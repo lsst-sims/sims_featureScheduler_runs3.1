@@ -46,7 +46,7 @@ def run_selfcal(pointings_db, stars_db="msrgb_1e6.sqlite", filtername="r", night
                                       lsst_filter=filtername, n_patches=n_patches,
                                       verbose=False)
 
-    solver = LsqrSolver(observed_stars, patch_out=None, star_out=None)
+    solver = LsqrSolver(observed_stars)
 
     solver.run()
     fit_patches, fit_stars = solver.return_solution()
