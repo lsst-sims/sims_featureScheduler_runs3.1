@@ -55,7 +55,7 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/upu
 ## run all the baseline commands in parallel
 module load parallel-20170722
 
-python upu.py
+#python upu.py
 
  ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
  ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
