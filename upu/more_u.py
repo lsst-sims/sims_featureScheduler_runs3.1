@@ -1452,8 +1452,8 @@ def main(args):
     if dbroot is None:
         fileroot = os.path.basename(sys.argv[0]).replace(".py", "") + "_"
     else:
-        fileroot = dbroot + "_" + 'utw_%i_' % u_template_weight
-    file_end = "v3.1_"
+        fileroot = dbroot + "_" 
+    file_end = 'utw_%i_' % u_template_weight + "v3.1_"
 
     pattern_dict = {
         1: [True],
@@ -1510,7 +1510,6 @@ def main(args):
         footprints=footprints,
         night_pattern=gaps_night_pattern,
         nights_delayed=nights_delayed,
-        u_template_weight=u_template_weight
     )
 
     # Set up the DDF surveys to dither
