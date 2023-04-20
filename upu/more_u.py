@@ -1421,7 +1421,7 @@ def main(args):
     neo_filters = args.neo_filters
     neo_repeat = args.neo_repeat
     ddf_season_frac = args.ddf_season_frac
-    u_template_weight = args.utp
+    u_template_weight = args.utw
 
     # Be sure to also update and regenerate DDF grid save file if changing mjd_start
     mjd_start = 60676.0
@@ -1605,7 +1605,7 @@ if __name__ == "__main__":
     parser.add_argument("--neo_night_pattern", type=int, default=4)
     parser.add_argument("--neo_filters", type=str, default="riz")
     parser.add_argument("--neo_repeat", type=int, default=4)
-    parser.add_argument("--utp", type=float, default=24.)
+    parser.add_argument("--utw", type=float, default=24.)
 
     args = parser.parse_args()
     main(args)
