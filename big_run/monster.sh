@@ -25,3 +25,10 @@ python ../weather/weather.py --cloud_offset_year 36 --outDir ../weather
 python ../selfcal_footprints/heavy_plane.py --outDir ../selfcal_footprints
 python ../selfcal_footprints/light_plane.py --outDir ../selfcal_footprints
 python ../selfcal_footprints/no_plane.py    --outDir ../selfcal_footprints 
+python ../upu/more_u.py --utw 12  --outDir ../upu 
+python ../upu/more_u.py --utw 24  --outDir ../upu 
+python ../upu/more_u.py --utw 50  --outDir ../upu 
+python ../upu/more_u.py --utw 100 --outDir ../upu
+python ../upu/more_u.py --utw 150 --outDir ../upu
+python ../upu/more_u.py --utw 200 --outDir ../upu
+python ../upu/upu.py --outDir ../upu
