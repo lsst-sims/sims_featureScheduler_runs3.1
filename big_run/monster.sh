@@ -32,3 +32,4 @@ python ../upu/more_u.py --utw 100 --outDir ../upu
 python ../upu/more_u.py --utw 150 --outDir ../upu
 python ../upu/more_u.py --utw 200 --outDir ../upu
 python ../upu/upu.py --outDir ../upu
+python ../ddf_split/ddf_split.py --outDir ../ddf_split
