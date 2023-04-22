@@ -6,7 +6,8 @@ Things changed since baseline 3.0
 * updated to newer cloud database
 * telescope now parks with r-filter in. Should be no filter change time added when coming out of park.
 * updated long gaps survey to only attempt log gaps if early pair was sucessful
-* changing the blobs to not have az and radius limits.
+* changing the blobs to not have az limits.
+* Fixed bug in projection for solving blob path. Might be a slight slewtime improvement from it.
 
 This directory has starter.py, which is the initial simulation for v3.1 that other experiements can be compared to.
 

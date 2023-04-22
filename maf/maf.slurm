@@ -74,3 +74,4 @@ cpu_count=28
 
 cat maf_final.sh | parallel --sshloginfile list_of_nodes -j $cpu_count
 
+gather_summaries --to_hdf
