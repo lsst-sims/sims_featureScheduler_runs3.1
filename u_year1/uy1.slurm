@@ -55,7 +55,7 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/u_year1
 ## run all the baseline commands in parallel
 module load parallel-20170722
 
-cat more_u.sh | parallel -j 28
+cat uy1.sh | parallel -j 28
 
  ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
  ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
