@@ -329,6 +329,7 @@ def generate_ddf_scheduled_obs(
     alt_max=85,
     HA_min=21.0,
     HA_max=3.0,
+    sun_alt_max=-18,
     dist_tol=3.0,
     season_unobs_frac=0.1,
     nvis_master=[8, 10, 20, 20, 24, 18],
@@ -380,6 +381,7 @@ def generate_ddf_scheduled_obs(
     alt_min = np.radians(alt_min)
     alt_max = np.radians(alt_max)
     dist_tol = np.radians(dist_tol)
+    sun_alt_max = np.radians(sun_alt_max)
 
     ddfs = ddf_locations()
     ddf_data = np.load(data_file)
@@ -427,6 +429,7 @@ def generate_ddf_scheduled_obs(
                     obs["HA_max"] = HA_max
                     obs["alt_min"] = alt_min
                     obs["alt_max"] = alt_max
+                    obs["sun_alt_max"] = sun_alt_max
                     all_scheduled_obs.append(obs)
 
                     obs = scheduled_observation(n=int(n_final))
@@ -446,6 +449,7 @@ def generate_ddf_scheduled_obs(
                     obs["HA_max"] = HA_max
                     obs["alt_min"] = alt_min
                     obs["alt_max"] = alt_max
+                    obs["sun_alt_max"] = sun_alt_max
                     all_scheduled_obs.append(obs)
 
                 else:
@@ -469,6 +473,7 @@ def generate_ddf_scheduled_obs(
                     obs["HA_max"] = HA_max
                     obs["alt_min"] = alt_min
                     obs["alt_max"] = alt_max
+                    obs["sun_alt_max"] = sun_alt_max
                     all_scheduled_obs.append(obs)
 
     result = np.concatenate(all_scheduled_obs)
