@@ -5,4 +5,4 @@ if __name__ == "__main__":
     with open('ug.sh', 'w') as file:
         for w1 in weights:
             for w2 in weights:
-                file.write('python ug_y1.py --utw %i --utg %i \n' % (w1, w2), )
+                file.write('python ug_y1.py --utw %i --gtw %i \n' % (w1, w2), )
