@@ -2,7 +2,7 @@
 
 ## Job Name
 
-#SBATCH --job-name=twi3.1
+#SBATCH --job-name=all_twi3.1
 
 ## Allocation Definition
 
@@ -14,12 +14,12 @@
 
 ## Nodes
 
-#SBATCH --nodes=3
+#SBATCH --nodes=1
 #SBATCH --ntasks-per-node=28
 
 ## Walltime (hours:min:sec) Do not specify a walltime substantially more than your job needs.
 
-#SBATCH --time=2-48:00:00
+#SBATCH --time=48:00:00
 
 ## Memory per node. It is important to specify the memory since the default memory is very small.
 
@@ -33,7 +33,7 @@
 
 ## Specify the working directory for this job
 
-#SBATCH --chdir=/gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/twi_neo
+#SBATCH --chdir=/gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/neo_all_twi
 
 ##turn on e-mail notification
 
@@ -45,20 +45,17 @@
 
 #SBATCH --export=all
 
-
-## run all the baseline commands in parallel
-module load parallel-20170722
+## Set up the evironment
 source ~/anaconda3/etc/profile.d/conda.sh
 conda activate guro
 export OPENBLAS_NUM_THREADS=1
 
-cat twi_neo.sh | xargs -I'{}' echo "cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/twi_neo ; source setup_env ; {}" > twi_final.sh
+cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/neo_all_twi
 
-scontrol show hostnames > list_of_nodes
-cpu_count=28
+## run all the baseline commands in parallel
+module load parallel-20170722
 
-# cat twi_final.sh | parallel --sshloginfile list_of_nodes -j $cpu_count
-
+python neo_all_twi.py
 
  ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
  ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
@@ -70,8 +67,5 @@ cpu_count=28
  generate_ss --pop vatiras_granvik_10k
  cat ss_script.sh >> maf.sh
  
-
- # Need to activate for each I guess
-cat maf.sh | xargs -I'{}' echo "cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/twi_neo ; source setup_env ; {}" > final.sh
-
-cat final.sh | parallel --sshloginfile list_of_nodes -j $cpu_count
+ 
+ cat maf.sh | parallel -j 28
