@@ -55,7 +55,7 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.1/neo_all_twi
 ## run all the baseline commands in parallel
 module load parallel-20170722
 
-python neo_all_twi.py
+cat twi.sh | parallel -j 28
 
  ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
  ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
