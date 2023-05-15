@@ -23,12 +23,58 @@ python ../selfcal_footprints/heavy_plane.py --outDir ../selfcal_footprints
 python ../selfcal_footprints/light_plane.py --outDir ../selfcal_footprints
 python ../selfcal_footprints/no_plane.py    --outDir ../selfcal_footprints 
 python ../ddf_split/ddf_split.py --outDir ../ddf_split
-python ../u_year1/uy1.py --utw 12  --outDir ../u_year1
-python ../u_year1/uy1.py --utw 24  --outDir ../u_year1
-python ../u_year1/uy1.py --utw 50  --outDir ../u_year1
-python ../u_year1/uy1.py --utw 100 --outDir ../u_year1
-python ../u_year1/uy1.py --utw 150 --outDir ../u_year1
-python ../u_year1/uy1.py --utw 200 --outDir ../u_year1
+python ../desi_north/desi_north.py --outDir ../desi_north
+python ../neo_all_twi/neo_all_twi.py --outDir ../neo_all_twi
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.8
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.7
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.6
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.5
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.4
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.3
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.2
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.1
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.0
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.5 --neo_filters r
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.5 --neo_filters i
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.5 --neo_filters z
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.5 --neo_filters iz
+python ../twi_neo/twi_neo.py --outDir ../twi_neo --neo_am 2.5 --neo_filters ri
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 24 --gtw 24
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 24 --gtw 50
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 24 --gtw 75
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 24 --gtw 100
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 24 --gtw 125
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 24 --gtw 150
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 50 --gtw 24
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 50 --gtw 50
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 50 --gtw 75
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 50 --gtw 100
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 50 --gtw 125
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 50 --gtw 150
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 75 --gtw 24
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 75 --gtw 50
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 75 --gtw 75
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 75 --gtw 100
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 75 --gtw 125
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 75 --gtw 150
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 100 --gtw 24
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 100 --gtw 50
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 100 --gtw 75
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 100 --gtw 100
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 100 --gtw 125
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 100 --gtw 150
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 125 --gtw 24
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 125 --gtw 50
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 125 --gtw 75
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 125 --gtw 100
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 125 --gtw 125
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 125 --gtw 150
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 150 --gtw 24
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 150 --gtw 50
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 150 --gtw 75
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 150 --gtw 100
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 150 --gtw 125
+python ../ug_year1/ug_y1.py --outDir ../ug_year1 --utw 150 --gtw 150
 # Can't do these because they need ddf_grid.
 # python ../roll_back_start/old_mjd0.py --outDir ../roll_back_start
 # python ../roll_back_start/old_mjd0_uz.py --outDir ../roll_back_start
