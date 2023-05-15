@@ -511,6 +511,7 @@ def blob_for_long(
     HA_min=12,
     HA_max=24 - 3.5,
     nights_delayed=-1,
+    blob_names=[],
 ):
     """
     Generate surveys that take observations in blobs.
@@ -741,6 +742,8 @@ def blob_for_long(
         bfs.append((bf.NightModuloBasisFunction(night_pattern), 0.0))
         # possibly force things to delay
         bfs.append((bf.DelayStartBasisFunction(nights_delay=nights_delayed), 0.0))
+        # only execute one blob per night
+        bfs.append((bf.OnceInNightBasisFunction(notes=blob_names), 0))
 
         # unpack the basis functions and weights
         weights = [val[1] for val in bfs]
@@ -794,7 +797,11 @@ def gen_long_gaps_survey(
     f1 = ["g", "r", "i"]
     f2 = ["r", "i", "z"]
     # Maybe force scripted to not go in twilight?
-
+    # Maybe force scripted to not go in twilight?
+    blob_names = []
+    for fn1, fn2 in zip(f1, f2):
+        for ab in ['a', 'b']:
+            blob_names.append("blob_long, %s%s, %s" % (fn1, fn2, ab))
     for filtername1, filtername2 in zip(f1, f2):
         blob = blob_for_long(
             footprints=footprints,
@@ -806,6 +813,7 @@ def gen_long_gaps_survey(
             HA_min=HA_min,
             HA_max=HA_max,
             nights_delayed=nights_delayed,
+            blob_names=blob_names,
         )
         scripted = ScriptedSurvey([], nside=nside, ignore_obs=["blob", "DDF", "twi"])
         surveys.append(
