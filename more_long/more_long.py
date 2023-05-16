@@ -1459,7 +1459,7 @@ def main(args):
         fileroot = os.path.basename(sys.argv[0]).replace(".py", "") + "_"
     else:
         fileroot = dbroot + "_"
-    file_end = "v3.1_"
+    file_end = "dayoff_%i" % nights_off + "v3.1_"
 
     pattern_dict = {
         1: [True],
