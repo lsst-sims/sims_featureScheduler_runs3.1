@@ -1,0 +1,12 @@
+python neo_elong.py  --neo_elong_req 45 --neo_area_req 0
+python neo_elong.py  --neo_elong_req 50 --neo_area_req 0
+python neo_elong.py  --neo_elong_req 47 --neo_area_req 0
+python neo_elong.py  --neo_elong_req 45 --neo_area_req 50
+python neo_elong.py  --neo_elong_req 45 --neo_area_req 100
+python neo_elong.py  --neo_elong_req 45 --neo_area_req 500
+python neo_elong.py  --neo_elong_req 47 --neo_area_req 50
+python neo_elong.py  --neo_elong_req 47 --neo_area_req 100
+python neo_elong.py  --neo_elong_req 47 --neo_area_req 500
+python neo_elong.py  --neo_elong_req 50 --neo_area_req 50
+python neo_elong.py  --neo_elong_req 50 --neo_area_req 100
+python neo_elong.py  --neo_elong_req 50 --neo_area_req 500
