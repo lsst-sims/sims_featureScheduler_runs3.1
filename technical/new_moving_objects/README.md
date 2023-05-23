@@ -24,3 +24,8 @@ killing logging:
  run_moving_calc --obs_file starter_v3.1_0yrs__trojan_5k_obs.npz --simulation_db starter_v3.1_0yrs.db --orbit_file /Users/yoachim/rubin_sim_data/orbits/trojan_5k.txt --out_dir starter_v3.1_0yrs_ss --objtype Trojan --start_time 60218.0 
 
  run_moving_fractions --work_dir starter_v3.1_0yrs_ss --metadata Trojan --start_time 60218.0
+
+
+ --
+
+ make_lsst_obs --simulation_db starter_v3.1_0yrs.db --orbit_file /Users/yoachim/rubin_sim_data/orbits/mba_5k.txt --positions_file=/Users/yoachim/rubin_sim_data/orbits_precompute/mba_5k.npz
