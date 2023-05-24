@@ -29,3 +29,20 @@ killing logging:
  --
 
  make_lsst_obs --simulation_db starter_v3.1_0yrs.db --orbit_file /Users/yoachim/rubin_sim_data/orbits/mba_5k.txt --positions_file=/Users/yoachim/rubin_sim_data/orbits_precompute/mba_5k.npz
+
+
+time make_lsst_obs --simulation_db starter_v3.1_10yrs.db --orbit_file /Users/yoachim/rubin_sim_data/orbits/mba_5k.txt --positions_file=/Users/yoachim/rubin_sim_data/orbits_precompute/mba_5k.npz
+
+2415.72s user 126.18s system 99% cpu 42:23.40 total
+1650.16s user 140.29s system 99% cpu 29:50.55 total
+1953.97s user 158.60s system 99% cpu 35:12.65 total -- this one gets all the obejcts!
+
+
+
+now the original:
+5572.44s user 204.47s system 99% cpu 1:36:17.70 total
+
+So more than a factor of 2 speedup!
+
+
+Memory footprint for MBAs is 1 Gb. Grows pretty slowly, so not worried about it getting over 2 Gb.
