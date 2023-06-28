@@ -14,7 +14,7 @@
 
 ## Nodes
 
-#SBATCH --nodes=4
+#SBATCH --nodes=3
 #SBATCH --ntasks-per-node=28
 
 ## Walltime (hours:min:sec) Do not specify a walltime substantially more than your job needs.
@@ -62,8 +62,6 @@ ls *10yrs.db | xargs -I'{}' echo "metadata_dir --db '{}'" >> maf.sh
 ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" >> maf.sh
 
 generate_ss 
-cat ss_script.sh >> maf.sh
-generate_ss --pop vatiras_granvik_10k
 cat ss_script.sh >> maf.sh
 
 # Need to activate for each I guess

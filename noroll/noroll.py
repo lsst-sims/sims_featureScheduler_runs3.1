@@ -35,8 +35,6 @@ from astropy.utils import iers
 iers.conf.auto_download = False
 
 
-
-
 def blob_for_long(
     nside,
     nexp=2,
@@ -354,7 +352,7 @@ def gen_long_gaps_survey(
     # Maybe force scripted to not go in twilight?
     blob_names = []
     for fn1, fn2 in zip(f1, f2):
-        for ab in ['a', 'b']:
+        for ab in ["a", "b"]:
             blob_names.append("blob_long, %s%s, %s" % (fn1, fn2, ab))
 
     for filtername1, filtername2 in zip(f1, f2):
@@ -1498,9 +1496,9 @@ def main(args):
     observatory = ModelObservatory(nside=nside, mjd_start=mjd_start)
     conditions = observatory.return_conditions()
 
-    footprints = Footprint(conditions.mjd_start,
-                           sun_ra_start=conditions.sun_ra_start,
-                           nside=nside)
+    footprints = Footprint(
+        conditions.mjd_start, sun_ra_start=conditions.sun_ra_start, nside=nside
+    )
     for filtername in footprints_hp:
         footprints.set_footprint(filtername, footprints_hp[filtername])
 

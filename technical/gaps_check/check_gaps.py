@@ -66,9 +66,11 @@ if __name__ == "__main__":
             metric = GapsMetric(time_scale=time_scale, metric_name='gaps %s %i' % (filtername, time_scale*24))
             slicer = maf.HealpixSlicer()
             summary_sats = [maf.MedianMetric(), maf.SumMetric()]
+            plot_dict = {'percentile_clip': 95.}
             sql = "filter='%s' and note not like '%%neo%%'" % filtername
 
-            bundle_list.append(maf.MetricBundle(metric, slicer, sql, summary_metrics=summary_sats))
+            bundle_list.append(maf.MetricBundle(metric, slicer, sql, plot_dict=plot_dict,
+                                                summary_metrics=summary_sats, run_name=run_name))
 
     mbg = maf.MetricBundleGroup(bundle_list, filename, out_dir=out_dir, results_db=results_db)
     mbg.run_all()
